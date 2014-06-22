@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserSubmitManager {
@@ -33,9 +34,24 @@ public class UserSubmitManager {
             results.add(result);
         }
 
-        Collections.reverse(results);
+        sortFromNewToOld(results);
 
         return results;
+    }
+
+    private void sortFromNewToOld(ArrayList<SubmitResult> results) {
+        Collections.sort(results, new Comparator<SubmitResult>() {
+            @Override
+            public int compare(SubmitResult r1, SubmitResult r2) {
+                if (r1.submitTime > r2.submitTime) {
+                    return 1;
+                } else if (r1.submitTime == r2.submitTime) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
     }
 
     private File getProblemDir(String username, String problemId) {
