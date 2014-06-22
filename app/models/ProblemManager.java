@@ -7,6 +7,8 @@ import play.Play;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
@@ -33,7 +35,18 @@ public class ProblemManager {
             problem.output = readFile(problemDir, OUTPUT_FILENAME);
             problems.add(problem);
         }
+
+        sortProblems(problems);
         return problems;
+    }
+
+    private void sortProblems(List<Problem> problems) {
+        Collections.sort(problems, new Comparator<Problem>() {
+            @Override
+            public int compare(Problem o1, Problem o2) {
+                return Integer.parseInt(o1.id) - Integer.parseInt(o2.id);
+            }
+        });
     }
 
     private String readFile(File problemDir, String child) throws IOException {
