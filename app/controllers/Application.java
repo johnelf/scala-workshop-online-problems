@@ -48,7 +48,12 @@ public class Application extends Controller {
         }
 
         List<String> usernames = usernameManager.getAll();
-        render(usernames);
+        String scalaVersion = getScalaVersion();
+        render(usernames, scalaVersion);
+    }
+
+    private static String getScalaVersion() {
+        return Play.configuration.getProperty("scala.version");
     }
 
     public static void login(String username, String password) throws IOException {
