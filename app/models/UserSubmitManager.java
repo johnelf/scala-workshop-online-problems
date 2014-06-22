@@ -44,11 +44,11 @@ public class UserSubmitManager {
             @Override
             public int compare(SubmitResult r1, SubmitResult r2) {
                 if (r1.submitTime > r2.submitTime) {
-                    return 1;
+                    return -1;
                 } else if (r1.submitTime == r2.submitTime) {
                     return 0;
                 } else {
-                    return -1;
+                    return 1;
                 }
             }
         });
