@@ -102,13 +102,23 @@ public class ScalaCodeRunner {
         int exitValue = p.waitFor();
 
         if (exitValue == 0) {
-            String realOutput = FileUtils.readFileToString(logFile, "UTF-8").trim();
-            if (!StringUtils.equals(problem.output.trim(), realOutput)) {
+            boolean notSameOutput = checkOutput(problem, logFile);
+            if (notSameOutput) {
                 exitValue = WRONG_RESULT;
             }
         }
 
         return createResult(logFile, exitValue, determineResultWhenRun(exitValue));
+    }
+
+    private boolean checkOutput(Problem problem, File logFile) throws IOException {
+        String expectedOutput = normallizeLineSeparators(problem.output.trim());
+        String realOutput = normallizeLineSeparators(FileUtils.readFileToString(logFile, "UTF-8").trim());
+        return !StringUtils.equals(expectedOutput, realOutput);
+    }
+
+    private String normallizeLineSeparators(String trim) {
+        return StringUtils.replace(trim, "\r", "");
     }
 
 
