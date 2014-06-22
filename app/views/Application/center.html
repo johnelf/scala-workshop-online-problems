@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+<h2>用户</h2>
+<div>
+    #{list userSummaries, as:'userSummary'}
+    <div>
+    ${userSummary.username} 已解决 ${userSummary.solvedProblems.size} 个问题：
+        #{list userSummary.solvedProblems, as: 'problemId'}
+        <a href="@{Application.showProblem(problemId)}" target="_blank">${problemId}</a>
+        #{/list}
+        #{if userSummary.hasSubmitted()}
+        (${userSummary.lastSubmitFromNow}小时前最后提交)
+        #{/if}
+    </div>
+    #{/list}
+</div>
+<hr/>
+<h2>题目列表</h2>
+<div>
+#{list problems, as: 'problem'}
+    <div>
+        <a href="@{Application.showProblem(problem.id)}" target="_blank">${problem.id} : ${problem.title}</a>
+    </div>
+#{/list}
+</div>

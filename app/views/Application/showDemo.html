@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+
+<h2>入口类：必须为App，内含main方法</h2>
+<pre>
+object App {
+  def main(args: Array[String]) {
+    // your code
+  }
+}
+</pre>
+
+<h2>读取一行</h2>
+<pre>
+scala.io.Source.stdin.readLine
+</pre>
+
+<h2>读取多行（全部）</h2>
+<pre>
+scala.io.Source.stdin.readLines
+</pre>
+
+<h2>输出一行</h2>
+<pre>
+println("content")
+</pre>
+
+<h2>完整示例：读到什么显示什么</h2>
+<pre>
+import scala.io.Source.stdin
+
+object App {
+  def main(args: Array[String]) {
+    stdin.getLines foreach { line =>
+      println(line)
+    }
+  }
+}
+</pre>
+<div>通常你可以copy上面这段代码到作为模板</div>
+
+<h2>注意：输出内容前后的空白不影响结果对比</h2>

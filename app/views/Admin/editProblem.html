@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+
+<form method="post" action="@{Admin.addOrUpdateProblem}">
+    <div>题目编号: <input type="text" name="problemId" value="${problem.id}"/></div>
+    <div>题目内容</div>
+    <div><textarea name="content" rows="15" cols="80">${problem.content}</textarea></div>
+    <div>测试数据 - 输入</div>
+    <div><textarea name="input" rows="15" cols="80">${problem.input}</textarea></div>
+    <div>测试数据 - 输出</div>
+    <div><textarea name="output" rows="15" cols="80">${problem.output}</textarea></div>
+    <div><input type="submit" value="添加或更新"/></div>
+</form>
+
+#{if problem.id != null }
+<a href="@{Admin.deleteProblem(problem.id)}" onclick="return confirm('Are you sure to delete it?')">Delete</a>
+#{/if}

@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+
+<div>
+#{list userAndSubmitCount, as:'pair'}
+    <a href="@{Application.showAllSubmits(problemId, pair.key)}">${pair.key} (${pair.value})</a>
+#{/list}
+</div>
+
+#{list submits, as: 'submit'}
+<hr/>
+<div class="${submit.passed ? 'submit_passed': 'submit_failed'}">
+    #{showSubmitResult submit:submit /}#
+</div>
+#{/list}
+#{else}
+没有人提交过
+#{/else}
+

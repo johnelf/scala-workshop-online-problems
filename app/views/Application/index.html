@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Scala热情Workshop 在线解题系统 (thoughtworks内部使用)</h1>
+
+<hr/>
+
+<div>不要被我古朴的外观迷惑了，这是新的流行趋势好不好?！</div>
+
+<hr/>
+
+<div>这里提供了一些scala题目，你可以在线提交scala代码，然后看到结果。</div>
+
+<div>每周大约有5至10道题目，当然你也可以做更多</div>
+
+<div>每周的workshop除了有重点的讲解一些scala知识点以外，还同时对这些题目进行讲解</div>
+
+<div>大家也可以互相看到答案，方便线下交流</div>
+
+<hr/>
+
+<div>由于偷懒，本站安全方面做得较差，所以只允许内容预授权用户使用，见谅</div>
+
+<div>如果你也想用，请直接来找我或者给我发邮件什么的，我把你加上去（我是谁？）</div>
+
+<div>另外，本站运行于一个资源贫乏的服务器上，万一挂了请到skype群里找我</div>
+
+<hr/>
+
+<div>环境：scala 版本:</div>
+
+<hr/>
+
+<div>用户列表:</div>
+
+<ul>
+#{list usernames, as: 'username'}
+    <li>${username}</li>
+#{/list}
+</ul>
+
+<hr/>
+
+<form method="post" action="@{Application.login}">
+    <div><span>用户名(在上面找)：<input type="text" name="username" value="${flash.get("username")}"/></span>
+        <span>密码：<input type="password" name="password" value="${flash.get("password")}"/></span>
+        <input type="submit" value="登录做题，并记住我一万年"/>
+    </div>
+    <div class="error">${flash.get("error")}</div>
+</form>
+
+

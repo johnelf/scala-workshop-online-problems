@@ -1,0 +1,17 @@
+.error {
+    color: red;
+}
+
+.submit_passed {
+    border-left: 5px solid lightgreen;
+    padding-left: 10px;
+}
+
+.submit_failed {
+
+}
+
+.code {
+    background-color: #EEEEEE;
+    padding: 10px;
+}

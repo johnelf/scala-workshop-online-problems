@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+
+<h2>编号: ${problem.id}</h2>
+
+<div>
+    <pre>${problem.content}</pre>
+</div>
+
+<hr>
+
+<form method="post" action="@{Application.runCode}">
+    <input type="hidden" name="problemId" value="${problem.id}"/>
+
+    <div>
+        <textarea name="code" rows="20" cols="80">${code}</textarea>
+    </div>
+    <div><input type="submit"/></div>
+    <div>
+        <li><a href="@{Application.showDemo}" target="_blank">查看样例：类名要求，如何读取输入，如何输出</a></li>
+        <li>注意：千万不要提交有可能破坏服务器的代码，如删除文件，重启什么的，因为没有对代码进行限制</li>
+    </div>
+</form>
+
+<hr/>
+
+<a href="@{Application.showTestData(problem.id)}" target="_blank">查看测试数据</a>
+<a href="@{Application.showAllSubmits(problem.id)}" target="_blank">查看大家的提交历史</a>
+
+<hr/>
+
+<div>我一共提交了${submits.size()}次</div>
+
+#{list submits, as: 'submit'}
+<hr/>
+<div class="${submit.passed ? 'submit_passed': 'submit_failed'}">
+    #{showSubmitResult submit:submit /}
+    <a href="@{Application.deleteSubmit(problem.id, submit.id)}" onclick="return confirm('Are you sure to delete?')">delete</a>
+</div>
+#{/list}

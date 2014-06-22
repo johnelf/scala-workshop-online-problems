@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+
+<form method="post" action="@{Admin.updateUserFile}">
+    <textarea name="content" rows="20" cols="40">${content}</textarea>
+    <div><input type="submit" value="更新"/></div>
+</form>

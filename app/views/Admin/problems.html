@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+
+<div>
+    ${flash.get("message")}
+</div>
+
+<h2>共有${problems.size()}个问题</h2>
+#{list problems, as:'problem'}
+<div><a href="@{Admin.editProblem(problem.id)}">${problem.id} - ${problem.title}</a></div>
+#{/list}
+
+<hr/>
+<a href="@{Admin.editProblem}">新建</a>
+
+
